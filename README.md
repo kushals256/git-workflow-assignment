@@ -1,6 +1,6 @@
 # Git Workflow Assignment
 
-**Kushal S** · Roll No. 2024eb02539
+Kushal S, Roll No. 2024eb02539
 
 A small two-page website (`index.html`, `about.html`) used to practise a full Git workflow,
 from a local repository through to this public GitHub repo.

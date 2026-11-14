@@ -1,149 +1,135 @@
-GIT COMMANDS USED IN THIS ASSIGNMENT
-====================================
-Student : Kushal S
-Roll No.: 2024eb02539
-Repo    : https://github.com/kushals256/git-workflow-assignment
+Git commands used in this assignment
 
-Each command is followed by a short explanation of what it does.
+Name: Kushal S
+Roll No: 2024eb02539
+Repo: https://github.com/kushals256/git-workflow-assignment
 
----------------------------------------------------------------
-STEP 1: LOCAL REPOSITORY SETUP
----------------------------------------------------------------
+Commands are listed in the order I ran them.
+
+
+Step 1: Setting up the local repo
+
 mkdir git-workflow-assignment
-    Creates the project folder on the local machine.
+    Makes the project folder.
 
 cd git-workflow-assignment
-    Moves into the project folder so all later commands run inside it.
+    Goes into the folder so the next commands run there.
 
 git init -b main
-    Initializes a new, empty Git repository in the current folder
-    and names the default branch "main".
+    Turns the folder into a Git repo and names the first branch main.
 
 git status
-    Shows the state of the working directory: untracked, modified
-    and staged files, and the current branch.
+    Shows which files are new, changed or staged, and which branch I'm on.
 
----------------------------------------------------------------
-STEP 2: GIT WORKFLOW (COMMITS, BRANCHING, MERGING)
----------------------------------------------------------------
+
+Step 2: Commits, branching and merging
+
 git add index.html about.html
-    Stages the two HTML files so they are included in the next commit.
+    Stages both HTML files for the first commit.
 
 git commit -m "Initial commit: add index.html and about.html"
-    Records the staged files as the first snapshot (initial state)
-    of the project, with a descriptive message.
+    Saves the starting state of the project.
 
 git diff
-    Shows line-by-line changes in the working directory that have
-    not been staged yet (used to review the edit to index.html).
+    Shows what I changed in index.html before staging it.
 
 git add index.html
-    Stages the modified index.html.
+    Stages the edited index.html.
 
 git commit -m "Update index.html: add last-updated note"
-    Creates the second commit containing the change to index.html.
+    Second commit, with the change to index.html.
 
 git branch feature
-    Creates a new branch named "feature" pointing at the current commit.
+    Creates a branch called feature at the current commit.
 
 git branch
-    Lists all local branches; the current branch is marked with "*".
+    Lists the branches. The one I'm on has a * next to it.
 
 git switch feature
-    Switches the working directory to the "feature" branch
-    (equivalent to the older "git checkout feature").
+    Moves me onto the feature branch. Older guides use git checkout for this.
 
 git add about.html
-    Stages the change made to about.html on the feature branch.
+    Stages the change I made to about.html on the feature branch.
 
 git commit -m "Feature: add team section to about.html"
-    Commits the change to the feature branch only; main is unaffected.
+    Commits that change to feature only. main doesn't have it yet.
 
 git switch main
-    Switches back to the main branch.
+    Goes back to main.
 
 git merge --no-ff feature -m "Merge branch feature into main"
-    Merges the feature branch into main. --no-ff forces a merge commit
-    so the branch activity remains visible in the history.
+    Brings the feature work into main. --no-ff makes Git create a merge
+    commit, so you can still see the branch in the history.
 
 git log --oneline --graph --all --decorate
-    Displays the full commit history as a compact graph, showing all
-    branches, the merge point and where each branch label points.
+    Prints the history as a graph with one line per commit, so the
+    branch and the merge are easy to see.
 
----------------------------------------------------------------
-STEP 3: .gitignore
----------------------------------------------------------------
-(create .gitignore containing "*.log" and "temp/")
-    *.log ignores every file ending in .log; temp/ ignores the whole
-    temp folder and everything inside it.
+
+Step 3: .gitignore
+
+The .gitignore file has two rules: *.log (any log file) and temp/
+(the whole temp folder).
 
 cat .gitignore
-    Prints the contents of the .gitignore file.
+    Prints the file so I can check the rules.
 
 git add .gitignore
-    Stages the .gitignore file.
+    Stages the file.
 
 git commit -m "Add .gitignore to ignore .log files and temp/ folder"
-    Commits the ignore rules so they apply for everyone using the repo.
+    Commits the rules so they apply for anyone who clones the repo.
 
 git status --ignored
-    Shows ignored files as well; confirms debug.log and temp/ are
-    ignored and will never be committed.
+    Lists ignored files too. debug.log and temp/ show up here, which
+    means Git won't track them.
 
----------------------------------------------------------------
-STEP 4: UNDO OPERATIONS
----------------------------------------------------------------
+
+Step 4: Undoing a commit
+
 git commit -m "Temporary commit to be undone"
-    Makes an additional commit that will be undone.
+    An extra commit made just so I could undo it.
 
 git log --oneline -3
-    Shows the 3 most recent commits in one-line form (used before and
-    after the undo to show its effect).
+    Shows the last three commits. I ran it before and after the undo.
 
 git reset --hard HEAD~1
-    Undoes the last commit by moving the branch pointer back one commit
-    and discarding its changes. It rewrites history, so use it only on
-    commits that have not been pushed.
+    Moves the branch back one commit and throws away its changes. It
+    rewrites history, so I only used it before pushing anything.
 
 git revert --no-edit HEAD
-    Undoes the last commit safely by creating a new commit that reverses
-    its changes. History is preserved, so it is the right choice for
-    commits that are (or will be) shared on GitHub.
+    Undoes the last commit by adding a new commit that reverses it. The
+    history stays intact, which is why it's the safer option once
+    commits are on GitHub.
 
----------------------------------------------------------------
-STEP 5: GITHUB INTEGRATION
----------------------------------------------------------------
+
+Step 5: GitHub
+
 gh repo create git-workflow-assignment --public
-    Creates a new, empty public repository on GitHub using the GitHub
-    CLI. (The same can be done from the "New repository" page on
-    github.com.)
+    Creates an empty public repo on my GitHub account from the terminal.
+    You can do the same thing from the New repository page on the site.
 
 git remote add origin https://github.com/kushals256/git-workflow-assignment.git
-    Connects the local repository to the GitHub repository under the
-    name "origin".
+    Links my local repo to the GitHub one under the name origin.
 
 git remote -v
-    Lists configured remotes and their fetch/push URLs to verify the
-    connection.
+    Shows the remote URLs so I could check the link was right.
 
 git push -u origin main
-    Uploads the main branch and its full commit history to GitHub;
-    -u sets origin/main as the default upstream for future push/pull.
+    Uploads main and all its commits. -u means later pushes can just
+    be git push.
 
 git push origin feature
-    Pushes the feature branch to GitHub so the branch is also visible
-    remotely.
+    Uploads the feature branch as well.
 
----------------------------------------------------------------
-FINAL UPDATE (README AND DOCUMENTATION)
----------------------------------------------------------------
+
+Later updates
+
 git add README.md git_commands.txt
-    Stages the new README and the updated command documentation.
+    Stages the README and changes to this file.
 
-git commit -m "Add README and student details"
-    Records the final documentation update as a new commit.
+git commit -m "..."
+    Commits them with a short message.
 
 git push
-    Sends the new commit to GitHub; because of the earlier "-u",
-    no remote or branch name is needed.
-
+    Sends the new commits to GitHub.
