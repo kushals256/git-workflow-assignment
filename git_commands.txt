@@ -1,5 +1,10 @@
 GIT COMMANDS USED IN THIS ASSIGNMENT
 ====================================
+Student : Kushal S
+Roll No.: 2024eb02539
+Repo    : https://github.com/kushals256/git-workflow-assignment
+
+Each command is followed by a short explanation of what it does.
 
 ---------------------------------------------------------------
 STEP 1: LOCAL REPOSITORY SETUP
@@ -128,3 +133,17 @@ git push -u origin main
 git push origin feature
     Pushes the feature branch to GitHub so the branch is also visible
     remotely.
+
+---------------------------------------------------------------
+FINAL UPDATE (README AND DOCUMENTATION)
+---------------------------------------------------------------
+git add README.md git_commands.txt
+    Stages the new README and the updated command documentation.
+
+git commit -m "Add README and student details"
+    Records the final documentation update as a new commit.
+
+git push
+    Sends the new commit to GitHub; because of the earlier "-u",
+    no remote or branch name is needed.
+
